@@ -3,19 +3,25 @@ import {taskService} from '../services'
 import { TaskFilter } from '../filters/taskFilter';
 
 export const taskController = {
-  getAllTask: async(req: Request, res:Response)=>{
+  getAllTask: async (req: Request, res: Response) => {
     try {
-      const filter : TaskFilter = { // aplicar filtros, se toman del query/request
-        nombre: req.query.nombre as string || null,
+      // Creamos un objeto de filtro que solo incluye las propiedades definidas
+      const filter: TaskFilter = {};
+  
+      // Solo agregamos 'nombre' si está definido en los parámetros de consulta
+      if (req.query.nombre) {
+        filter.nombre = req.query.nombre as string; // Aseguramos que sea un string
       }
+  
       const data = await taskService.getAll(filter);
       return res.status(200).json(data);
-    } catch (error:any) {
+    } catch (error: any) {
       res.status(400).json({
-        message: error.message
-      })
+        message: error.message,
+      });
     }
   },
+  
 
   create: async(req:Request, res:Response)=>{
     try {

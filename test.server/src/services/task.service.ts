@@ -2,7 +2,7 @@ import {TaskModel} from '../models'
 
 export const taskService = {
   getAll: async(filter: any)=>{
-    return await TaskModel.find(filter);
+    return await TaskModel.find({name: filter.nombre});
   },
 
   create: async(entity: object)=>{
