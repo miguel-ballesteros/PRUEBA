@@ -1,8 +1,8 @@
 import {TaskModel} from '../models'
 
 export const taskService = {
-  getAll: async()=>{
-    return await TaskModel.find();
+  getAll: async(filter: any)=>{
+    return await TaskModel.find(filter);
   },
 
   create: async(entity: object)=>{

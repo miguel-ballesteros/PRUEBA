@@ -3,12 +3,12 @@ import {taskController} from '../controllers'
 
 const router = Router();
 
-router.get('/', taskController.getAllTask);
+router.get('/getTasks', taskController.getAllTask);
 
-router.post('/', taskController.create);
+router.post('/createTask/', taskController.create);
 
-router.patch('/:id', taskController.update);
+router.patch('/getTask/:id', taskController.update);
 
-router.delete('/:id', taskController.delete);
+router.delete('/deleteTask/:id', taskController.delete);
 
 export default router;

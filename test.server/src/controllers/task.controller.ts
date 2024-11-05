@@ -1,11 +1,15 @@
 import {Response, Request} from 'express'
 import {taskService} from '../services'
+import { TaskFilter } from '../filters/taskFilter';
 
 export const taskController = {
-  getAllTask: async(req:Request, res:Response)=>{
+  getAllTask: async(req: Request, res:Response)=>{
     try {
-      const data = await taskService.getAll();
-      return res.json(data);
+      const filter : TaskFilter = { // aplicar filtros, se toman del query/request
+        nombre: req.query.nombre as string || null,
+      }
+      const data = await taskService.getAll(filter);
+      return res.status(200).json(data);
     } catch (error:any) {
       res.status(400).json({
         message: error.message
