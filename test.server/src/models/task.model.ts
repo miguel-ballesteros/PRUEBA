@@ -4,6 +4,9 @@ const taskSchema = new Schema({
   name:{
     type: String
   },
+  lastName:{
+    type: String
+  },
   description:{
     type: String
   },

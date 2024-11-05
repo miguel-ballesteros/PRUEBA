@@ -1,11 +1,11 @@
-import {Router} from 'express';
-import {taskController} from '../controllers'
+import { Router } from 'express';
+import { userController } from '../controllers/usuario.controller';
 
 const router = Router();
 
-router.get('/', taskController.getAllTask);
-router.post('/', taskController.create);
-router.patch('/:id', taskController.update);
-router.delete('/:id', taskController.delete);
+router.get('/users', userController.getAllUsers);
+router.post('/createUser', userController.createUser);
+router.patch('/users/:id', userController.updateUser);
+router.delete('/deleteUser/:id', userController.deleteUser);
 
 export default router;

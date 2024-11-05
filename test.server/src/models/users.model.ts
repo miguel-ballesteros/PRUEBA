@@ -1,19 +1,27 @@
-import {Schema, model} from 'mongoose';
+import { Schema, model } from 'mongoose';
 
-const userSchema = new Schema({
-  nombres:{
-    type: String
+const usuarioSchema = new Schema({
+  nombre: {
+    type: String,
+    required: true,
   },
-  apellidos:{
-    type: String
+  segundoNombre: {
+    type: String,
+    required: false, // Este campo es opcional
   },
-  edad: {
-    type: Number
+  primerApellido: {
+    type: String,
+    required: true,
+  },
+  segundoApellido: {
+    type: String,
+    required: false, // Este campo es opcional
   },
   correo: {
-    type: String
+    type: String,
+    required: true,
+    unique: true, // Esto garantiza que el correo sea único en la colección
   }
-});
- 
+}, { timestamps: true }); // Agregar timestamps para createdAt y updatedAt automáticamente
 
-export const TaskModel = model('users', userSchema);
+export const UsuarioModel = model('usuarios', usuarioSchema);
